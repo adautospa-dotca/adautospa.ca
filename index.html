@@ -49,6 +49,9 @@
     .nav-cta:hover { background: var(--gold-dark) !important; color: #000 !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     .mobile-menu {
       display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
       background: var(--bg2); border-bottom: 1px solid var(--border);
@@ -887,8 +890,8 @@
 <script>
 const state={service:null,serviceMin:0,serviceMax:0,addons:[],addonsTotal:0};
 
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');m.classList.toggle('open');h.classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.querySelector('.hamburger').classList.remove('open');}
 
 function showStep(n){
   document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
@@ -939,7 +942,7 @@ function buildReview(){
   const fn=document.getElementById('firstName').value,ln=document.getElementById('lastName').value,em=document.getElementById('email').value,ph=document.getElementById('phone').value;
   const yr=document.getElementById('vYear').value,mk=document.getElementById('vMake').value,md=document.getElementById('vModel').value,vt=document.getElementById('vType').value;
   const dt=document.getElementById('prefDate').value,tm=document.getElementById('prefTime').value,ad=document.getElementById('address').value;
-  const wr=document.querySelector('[name="water"].selected'),er=document.querySelector('[name="electric"].selected');
+  const wr=document.querySelector('.radio-option.selected input[name="water"]'),er=document.querySelector('.radio-option.selected input[name="electric"]');
   const tMin=state.serviceMin+state.addonsTotal,tMax=state.serviceMax+state.addonsTotal;
   const dMin=Math.round(tMin*0.2),dMax=Math.round(tMax*0.2);
   document.getElementById('depositAmt').textContent='$'+dMin+'–$'+dMax;
@@ -952,8 +955,8 @@ function buildReview(){
     '<div class="price-row"><span>Add-Ons</span><span style="max-width:200px;text-align:right">'+addonList+'</span></div>'+
     '<div class="price-row"><span>Date &amp; Time</span><span>'+dt+' at '+tm+'</span></div>'+
     '<div class="price-row"><span>Location</span><span style="max-width:200px;text-align:right">'+ad+'</span></div>'+
-    '<div class="price-row"><span>Water Access</span><span>'+(wr?wr.querySelector('input').value:'Not answered')+'</span></div>'+
-    '<div class="price-row"><span>Electricity Access</span><span>'+(er?er.querySelector('input').value:'Not answered')+'</span></div>'+
+    '<div class="price-row"><span>Water Access</span><span>'+(wr?wr.value:'Not answered')+'</span></div>'+
+    '<div class="price-row"><span>Electricity Access</span><span>'+(er?er.value:'Not answered')+'</span></div>'+
     '<div class="price-row total"><span>Estimated Total</span><span>$'+tMin+'–$'+tMax+'</span></div>'+
     '<div class="price-row deposit"><span>Deposit (20%)</span><span>$'+dMin+'–$'+dMax+'</span></div>';
 }
@@ -961,32 +964,12 @@ function submitBooking(){
   const fn=document.getElementById('firstName').value,ln=document.getElementById('lastName').value,em=document.getElementById('email').value,ph=document.getElementById('phone').value;
   const yr=document.getElementById('vYear').value,mk=document.getElementById('vMake').value,md=document.getElementById('vModel').value,vt=document.getElementById('vType').value,vc=document.getElementById('vColour').value,vn=document.getElementById('vNotes').value;
   const dt=document.getElementById('prefDate').value,tm=document.getElementById('prefTime').value,ad=document.getElementById('address').value;
-  const wr=document.querySelector('[name="water"].selected'),er=document.querySelector('[name="electric"].selected');
+  const wr=document.querySelector('.radio-option.selected input[name="water"]'),er=document.querySelector('.radio-option.selected input[name="electric"]');
   const fn2=document.getElementById('finalNotes').value;
   const tMin=state.serviceMin+state.addonsTotal,tMax=state.serviceMax+state.addonsTotal;
   const dMin=Math.round(tMin*0.2),dMax=Math.round(tMax*0.2);
   const addonList=state.addons.length?state.addons.map(a=>a.name+' (+$'+a.price+')').join(', '):'None';
-  const body=encodeURIComponent('NEW BOOKING REQUEST - AD Auto Spa
-
-Name: '+fn+' '+ln+'
-Phone: '+ph+'
-Email: '+em+'
-
-Vehicle: '+yr+' '+mk+' '+md+' ('+vt+') - '+vc+'
-Notes: '+(vn||'None')+'
-
-Service: '+state.service+'
-Add-Ons: '+addonList+'
-Estimated Total: $'+tMin+'-$'+tMax+'
-Deposit (20%): $'+dMin+'-$'+dMax+'
-
-Date: '+dt+'
-Time: '+tm+'
-Address: '+ad+'
-Water Access: '+(wr?wr.querySelector('input').value:'Not answered')+'
-Electricity: '+(er?er.querySelector('input').value:'Not answered')+'
-
-Additional Notes: '+(fn2||'None'));
+  const body=encodeURIComponent('NEW BOOKING REQUEST - AD Auto Spa\n\nName: '+fn+' '+ln+'\nPhone: '+ph+'\nEmail: '+em+'\n\nVehicle: '+yr+' '+mk+' '+md+' ('+vt+') - '+vc+'\nNotes: '+(vn||'None')+'\n\nService: '+state.service+'\nAdd-Ons: '+addonList+'\nEstimated Total: $'+tMin+'-$'+tMax+'\nDeposit (20%): $'+dMin+'-$'+dMax+'\n\nDate: '+dt+'\nTime: '+tm+'\nAddress: '+ad+'\nWater Access: '+(wr?wr.value:'Not answered')+'\nElectricity: '+(er?er.value:'Not answered')+'\n\nAdditional Notes: '+(fn2||'None'));
   window.location.href='mailto:info@adautospa.ca?subject='+encodeURIComponent('Booking Request - '+state.service+' - '+fn+' '+ln)+'&body='+body;
   setTimeout(()=>showStep('success'),800);
 }
@@ -1013,6 +996,11 @@ document.querySelectorAll('.service-btn').forEach(btn=>{
 });
 
 document.getElementById('prefDate').setAttribute('min',new Date().toISOString().split('T')[0]);
+
+document.addEventListener('click',function(e){
+  const m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!h.contains(e.target)){m.classList.remove('open');h.classList.remove('open');}
+});
 
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}}),{threshold:0.08});
 document.querySelectorAll('.service-card,.addon-card,.promo-card,.why-card,.contact-card,.review-card').forEach(el=>{
