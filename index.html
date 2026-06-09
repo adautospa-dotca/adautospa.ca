@@ -140,8 +140,7 @@
     .service-price { font-size: 38px; font-weight: 800; color: var(--gold); margin-bottom: 20px; letter-spacing: -1px; }
     .service-price span { font-size: 16px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
     .service-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
-    .service-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted2); }
-    .service-features li::before { content: "&#x2713;"; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .service-features li { font-size: 14px; color: var(--muted2); }
     .service-btn { width: 100%; text-align: center; padding: 13px; }
 
     /* ── ADD-ONS ── */
@@ -357,6 +356,7 @@
       nav { padding: 0 16px; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -417,32 +417,32 @@
       <div class="service-icon">&#x1F6BF;</div>
       <div class="service-name">Exterior Detail</div>
       <div class="service-time">&#x23F1; ~30 minutes</div>
-      <div class="service-price">$60 <span>&ndash; $80</span></div>
+      <div class="service-price">$70 <span>&ndash; $90</span></div>
       <ul class="service-features">
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-outline service-btn" data-service="Exterior Detail" data-min="60" data-max="80">Book This Package</a>
+      <a href="#booking" class="btn btn-outline service-btn" data-service="Exterior Detail" data-min="70" data-max="90">Book This Package</a>
     </div>
     <div class="service-card featured">
       <div class="popular-badge">Most Popular</div>
       <div class="service-icon">&#x2728;</div>
       <div class="service-name">Quick Detail</div>
       <div class="service-time">&#x23F1; 45&ndash;60 minutes</div>
-      <div class="service-price">$90 <span>&ndash; $120</span></div>
+      <div class="service-price">$105 <span>&ndash; $135</span></div>
       <ul class="service-features">
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
         <li>Interior vacuum and wipe down</li>
         <li>Interior windows cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-primary service-btn" data-service="Quick Detail" data-min="90" data-max="120">Book This Package</a>
+      <a href="#booking" class="btn btn-primary service-btn" data-service="Quick Detail" data-min="105" data-max="135">Book This Package</a>
     </div>
     <div class="service-card">
       <div class="service-icon">&#x1F48E;</div>
       <div class="service-name">Full Detail</div>
       <div class="service-time">&#x23F1; 2&ndash;3 hours</div>
-      <div class="service-price">$180 <span>&ndash; $250</span></div>
+      <div class="service-price">$210 <span>&ndash; $280</span></div>
       <ul class="service-features">
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
@@ -452,7 +452,7 @@
         <li>Full interior steam clean</li>
         <li>Interior mats cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-gold service-btn" data-service="Full Detail" data-min="180" data-max="250">Book This Package</a>
+      <a href="#booking" class="btn btn-gold service-btn" data-service="Full Detail" data-min="210" data-max="280">Book This Package</a>
     </div>
   </div>
 </section>
@@ -466,13 +466,13 @@
       <p class="section-sub">Customize your detail with any of these premium add-ons.</p>
     </div>
     <div class="addons-grid">
-      <div class="addon-card"><div class="addon-icon">&#x1F43E;</div><div><div class="addon-name">Pet Hair Removal</div><div class="addon-price">$40</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F9C2;</div><div><div class="addon-name">Salt Stain Removal</div><div class="addon-price">$40</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F527;</div><div><div class="addon-name">Engine Bay Cleaning</div><div class="addon-price">$35</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F4A1;</div><div><div class="addon-name">Headlight Restoration</div><div class="addon-price">$50</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F33F;</div><div><div class="addon-name">Odor Removal</div><div class="addon-price">$60</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F6E1;</div><div><div class="addon-name">Underbody Cleaning</div><div class="addon-price">$25</div></div></div>
-      <div class="addon-card"><div class="addon-icon">&#x1F3C6;</div><div><div class="addon-name">Ceramic Spray Protection</div><div class="addon-price">$50</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F43E;</div><div><div class="addon-name">Pet Hair Removal</div><div class="addon-price">$50</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F9C2;</div><div><div class="addon-name">Salt Stain Removal</div><div class="addon-price">$50</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F527;</div><div><div class="addon-name">Engine Bay Cleaning</div><div class="addon-price">$45</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F4A1;</div><div><div class="addon-name">Headlight Restoration</div><div class="addon-price">$60</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F33F;</div><div><div class="addon-name">Odor Removal</div><div class="addon-price">$75</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F6E1;</div><div><div class="addon-name">Underbody Cleaning</div><div class="addon-price">$35</div></div></div>
+      <div class="addon-card"><div class="addon-icon">&#x1F3C6;</div><div><div class="addon-name">Ceramic Spray Protection</div><div class="addon-price">$65</div></div></div>
     </div>
   </section>
 </div>
@@ -489,12 +489,12 @@
       <div class="promo-season" style="color:var(--green);">&#x1F504; Maintenance Program</div>
       <div class="promo-name">Maintenance Detail</div>
       <div class="promo-time">&#x23F1; 1&ndash;2 hours</div>
-      <div class="promo-price" style="color:var(--green);">$60 &ndash; $90</div>
+      <div class="promo-price" style="color:var(--green);">$70 &ndash; $100</div>
       <ul class="promo-features">
-        <li><span style="color:var(--green)">&#x2713;</span>&nbsp; Full exterior hand wash and dry</li>
-        <li><span style="color:var(--green)">&#x2713;</span>&nbsp; Wheels and tires cleaned</li>
-        <li><span style="color:var(--green)">&#x2713;</span>&nbsp; Interior vacuum and wipe down</li>
-        <li><span style="color:var(--green)">&#x2713;</span>&nbsp; Interior windows cleaned</li>
+        <li>Full exterior hand wash and dry</li>
+        <li>Wheels and tires cleaned</li>
+        <li>Interior vacuum and wipe down</li>
+        <li>Interior windows cleaned</li>
       </ul>
       <p class="promo-note">* Requires a completed Full Detail to be eligible</p>
     </div>
@@ -502,11 +502,11 @@
       <div class="promo-season" style="color:#38bdf8;">&#x1F331; Spring Special</div>
       <div class="promo-name">Spring Detail</div>
       <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-      <div class="promo-price" style="color:#38bdf8;">$170 &ndash; $220</div>
+      <div class="promo-price" style="color:#38bdf8;">$200 &ndash; $250</div>
       <ul class="promo-features">
-        <li><span style="color:#38bdf8">&#x2713;</span>&nbsp; Everything in Full Detail</li>
-        <li><span style="color:#38bdf8">&#x2713;</span>&nbsp; Salt stain removal</li>
-        <li><span style="color:#38bdf8">&#x2713;</span>&nbsp; Underbody cleaning</li>
+        <li>Everything in Full Detail</li>
+        <li>Salt stain removal</li>
+        <li>Underbody cleaning</li>
       </ul>
       <p class="promo-note">Wash away the winter &mdash; road salt, grime, and all.</p>
     </div>
@@ -514,11 +514,11 @@
       <div class="promo-season" style="color:var(--gold);">&#x1F342; Fall Special</div>
       <div class="promo-name">Fall Detail</div>
       <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-      <div class="promo-price" style="color:var(--gold);">$190 &ndash; $240</div>
+      <div class="promo-price" style="color:var(--gold);">$220 &ndash; $270</div>
       <ul class="promo-features">
-        <li><span style="color:var(--gold)">&#x2713;</span>&nbsp; Everything in Full Detail</li>
-        <li><span style="color:var(--gold)">&#x2713;</span>&nbsp; Ceramic spray protection</li>
-        <li><span style="color:var(--gold)">&#x2713;</span>&nbsp; Engine bay cleaning</li>
+        <li>Everything in Full Detail</li>
+        <li>Ceramic spray protection</li>
+        <li>Engine bay cleaning</li>
       </ul>
       <p class="promo-note">Prep your car for the Newfoundland winter ahead.</p>
     </div>
@@ -708,15 +708,15 @@
         <div class="step-title">Select Your Service</div>
         <div class="step-sub">Choose the package that best fits your needs.</div>
         <div class="service-select-grid">
-          <label class="service-option" onclick="selectService(this,'Exterior Detail',60,80)"><input type="radio" name="service"><div class="so-name">&#x1F6BF; Exterior Detail</div><div class="so-price">$60&ndash;$80</div><div class="so-time">~30 min</div></label>
-          <label class="service-option" onclick="selectService(this,'Quick Detail',90,120)"><input type="radio" name="service"><div class="so-name">&#x2728; Quick Detail</div><div class="so-price">$90&ndash;$120</div><div class="so-time">45&ndash;60 min</div></label>
-          <label class="service-option" onclick="selectService(this,'Full Detail',180,250)"><input type="radio" name="service"><div class="so-name">&#x1F48E; Full Detail</div><div class="so-price">$180&ndash;$250</div><div class="so-time">2&ndash;3 hrs</div></label>
+          <label class="service-option" onclick="selectService(this,'Exterior Detail',70,90)"><input type="radio" name="service"><div class="so-name">&#x1F6BF; Exterior Detail</div><div class="so-price">$70&ndash;$90</div><div class="so-time">~30 min</div></label>
+          <label class="service-option" onclick="selectService(this,'Quick Detail',105,135)"><input type="radio" name="service"><div class="so-name">&#x2728; Quick Detail</div><div class="so-price">$105&ndash;$135</div><div class="so-time">45&ndash;60 min</div></label>
+          <label class="service-option" onclick="selectService(this,'Full Detail',210,280)"><input type="radio" name="service"><div class="so-name">&#x1F48E; Full Detail</div><div class="so-price">$210&ndash;$280</div><div class="so-time">2&ndash;3 hrs</div></label>
         </div>
         <div style="font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;">Or a seasonal promotion:</div>
         <div class="service-select-grid">
-          <label class="service-option" onclick="selectService(this,'Maintenance Detail',60,90)"><input type="radio" name="service"><div class="so-name">&#x1F504; Maintenance</div><div class="so-price">$60&ndash;$90</div><div class="so-time">1&ndash;2 hrs</div></label>
-          <label class="service-option" onclick="selectService(this,'Spring Detail',170,220)"><input type="radio" name="service"><div class="so-name">&#x1F331; Spring Detail</div><div class="so-price">$170&ndash;$220</div><div class="so-time">3&ndash;4 hrs</div></label>
-          <label class="service-option" onclick="selectService(this,'Fall Detail',190,240)"><input type="radio" name="service"><div class="so-name">&#x1F342; Fall Detail</div><div class="so-price">$190&ndash;$240</div><div class="so-time">3&ndash;4 hrs</div></label>
+          <label class="service-option" onclick="selectService(this,'Maintenance Detail',70,100)"><input type="radio" name="service"><div class="so-name">&#x1F504; Maintenance</div><div class="so-price">$70&ndash;$100</div><div class="so-time">1&ndash;2 hrs</div></label>
+          <label class="service-option" onclick="selectService(this,'Spring Detail',200,250)"><input type="radio" name="service"><div class="so-name">&#x1F331; Spring Detail</div><div class="so-price">$200&ndash;$250</div><div class="so-time">3&ndash;4 hrs</div></label>
+          <label class="service-option" onclick="selectService(this,'Fall Detail',220,270)"><input type="radio" name="service"><div class="so-name">&#x1F342; Fall Detail</div><div class="so-price">$220&ndash;$270</div><div class="so-time">3&ndash;4 hrs</div></label>
         </div>
         <div class="form-nav">
           <button class="btn btn-back" onclick="prevStep(3)">&#x2190; Back</button>
@@ -729,13 +729,13 @@
         <div class="step-title">Add-On Services</div>
         <div class="step-sub">Enhance your detail with any of these services (optional).</div>
         <div class="addon-select-grid">
-          <label class="addon-option" onclick="toggleAddon(this,'Pet Hair Removal',40)"><input type="checkbox"><div class="ao-icon">&#x1F43E;</div><div><div class="ao-name">Pet Hair Removal</div><div class="ao-price">+$40</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Salt Stain Removal',40)"><input type="checkbox"><div class="ao-icon">&#x1F9C2;</div><div><div class="ao-name">Salt Stain Removal</div><div class="ao-price">+$40</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Engine Bay Cleaning',35)"><input type="checkbox"><div class="ao-icon">&#x1F527;</div><div><div class="ao-name">Engine Bay Cleaning</div><div class="ao-price">+$35</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Headlight Restoration',50)"><input type="checkbox"><div class="ao-icon">&#x1F4A1;</div><div><div class="ao-name">Headlight Restoration</div><div class="ao-price">+$50</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Odor Removal',60)"><input type="checkbox"><div class="ao-icon">&#x1F33F;</div><div><div class="ao-name">Odor Removal</div><div class="ao-price">+$60</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Underbody Cleaning',25)"><input type="checkbox"><div class="ao-icon">&#x1F6E1;</div><div><div class="ao-name">Underbody Cleaning</div><div class="ao-price">+$25</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Ceramic Spray Protection',50)"><input type="checkbox"><div class="ao-icon">&#x1F3C6;</div><div><div class="ao-name">Ceramic Spray</div><div class="ao-price">+$50</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Pet Hair Removal',50)"><input type="checkbox"><div class="ao-icon">&#x1F43E;</div><div><div class="ao-name">Pet Hair Removal</div><div class="ao-price">+$50</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Salt Stain Removal',50)"><input type="checkbox"><div class="ao-icon">&#x1F9C2;</div><div><div class="ao-name">Salt Stain Removal</div><div class="ao-price">+$50</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Engine Bay Cleaning',45)"><input type="checkbox"><div class="ao-icon">&#x1F527;</div><div><div class="ao-name">Engine Bay Cleaning</div><div class="ao-price">+$45</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Headlight Restoration',60)"><input type="checkbox"><div class="ao-icon">&#x1F4A1;</div><div><div class="ao-name">Headlight Restoration</div><div class="ao-price">+$60</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Odor Removal',75)"><input type="checkbox"><div class="ao-icon">&#x1F33F;</div><div><div class="ao-name">Odor Removal</div><div class="ao-price">+$75</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Underbody Cleaning',35)"><input type="checkbox"><div class="ao-icon">&#x1F6E1;</div><div><div class="ao-name">Underbody Cleaning</div><div class="ao-price">+$35</div></div></label>
+          <label class="addon-option" onclick="toggleAddon(this,'Ceramic Spray Protection',65)"><input type="checkbox"><div class="ao-icon">&#x1F3C6;</div><div><div class="ao-name">Ceramic Spray</div><div class="ao-price">+$65</div></div></label>
         </div>
         <div class="price-summary">
           <div class="price-row"><span>Service</span><span id="ps4-service">&ndash;</span></div>
@@ -888,6 +888,13 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// ── EmailJS Configuration ── Fill these in after creating your EmailJS account
+const EMAILJS_PUBLIC_KEY      = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID      = 'YOUR_SERVICE_ID';
+const EMAILJS_BIZ_TEMPLATE    = 'YOUR_BUSINESS_TEMPLATE_ID';
+const EMAILJS_CUSTOMER_TEMPLATE = 'YOUR_CUSTOMER_TEMPLATE_ID';
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
 const state={service:null,serviceMin:0,serviceMax:0,addons:[],addonsTotal:0};
 
 function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');m.classList.toggle('open');h.classList.toggle('open');}
@@ -960,7 +967,10 @@ function buildReview(){
     '<div class="price-row total"><span>Estimated Total</span><span>$'+tMin+'–$'+tMax+'</span></div>'+
     '<div class="price-row deposit"><span>Deposit (20%)</span><span>$'+dMin+'–$'+dMax+'</span></div>';
 }
-function submitBooking(){
+async function submitBooking(){
+  const btn=document.querySelector('.btn-submit');
+  btn.disabled=true;btn.textContent='Sending…';
+
   const fn=document.getElementById('firstName').value,ln=document.getElementById('lastName').value,em=document.getElementById('email').value,ph=document.getElementById('phone').value;
   const yr=document.getElementById('vYear').value,mk=document.getElementById('vMake').value,md=document.getElementById('vModel').value,vt=document.getElementById('vType').value,vc=document.getElementById('vColour').value,vn=document.getElementById('vNotes').value;
   const dt=document.getElementById('prefDate').value,tm=document.getElementById('prefTime').value,ad=document.getElementById('address').value;
@@ -969,9 +979,34 @@ function submitBooking(){
   const tMin=state.serviceMin+state.addonsTotal,tMax=state.serviceMax+state.addonsTotal;
   const dMin=Math.round(tMin*0.2),dMax=Math.round(tMax*0.2);
   const addonList=state.addons.length?state.addons.map(a=>a.name+' (+$'+a.price+')').join(', '):'None';
-  const body=encodeURIComponent('NEW BOOKING REQUEST - AD Auto Spa\n\nName: '+fn+' '+ln+'\nPhone: '+ph+'\nEmail: '+em+'\n\nVehicle: '+yr+' '+mk+' '+md+' ('+vt+') - '+vc+'\nNotes: '+(vn||'None')+'\n\nService: '+state.service+'\nAdd-Ons: '+addonList+'\nEstimated Total: $'+tMin+'-$'+tMax+'\nDeposit (20%): $'+dMin+'-$'+dMax+'\n\nDate: '+dt+'\nTime: '+tm+'\nAddress: '+ad+'\nWater Access: '+(wr?wr.value:'Not answered')+'\nElectricity: '+(er?er.value:'Not answered')+'\n\nAdditional Notes: '+(fn2||'None'));
-  window.location.href='mailto:info@adautospa.ca?subject='+encodeURIComponent('Booking Request - '+state.service+' - '+fn+' '+ln)+'&body='+body;
-  setTimeout(()=>showStep('success'),800);
+
+  const params={
+    customer_name: fn+' '+ln,
+    customer_email: em,
+    customer_phone: ph,
+    vehicle: yr+' '+mk+' '+md+' ('+vt+')'+(vc?' — '+vc:''),
+    vehicle_notes: vn||'None',
+    service: state.service,
+    addons: addonList,
+    total: '$'+tMin+'–$'+tMax,
+    deposit: '$'+dMin+'–$'+dMax,
+    date: dt,
+    time: tm,
+    address: ad,
+    water_access: wr?wr.value:'Not answered',
+    electricity_access: er?er.value:'Not answered',
+    additional_notes: fn2||'None'
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_BIZ_TEMPLATE, {...params, to_email:'info@adautospa.ca'});
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CUSTOMER_TEMPLATE, {...params, to_email:em});
+    showStep('success');
+  } catch(err) {
+    console.error('EmailJS error:',err);
+    showToast('Could not send booking — please email info@adautospa.ca directly.','error');
+    btn.disabled=false;btn.textContent='✅ Confirm Booking';
+  }
 }
 function handleFiles(input){
   const c=document.getElementById('uploadedFiles');c.innerHTML='';
