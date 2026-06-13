@@ -166,6 +166,9 @@
     .promo-card.c-maintenance::before { background: var(--green); }
     .promo-card.c-spring::before { background: #38bdf8; }
     .promo-card.c-fall::before { background: var(--gold); }
+    .promo-card.c-fleet::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+    .promo-card.c-fleet { border-color: rgba(201,168,76,0.4); display: flex; flex-direction: column; }
+    .promo-card.c-fleet .promo-features { flex: 1; }
     .promo-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--shadow); }
     .promo-season { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
     .promo-name { font-size: 21px; font-weight: 700; margin-bottom: 5px; }
@@ -367,9 +370,10 @@
   </div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#promotions">Promotions</a></li>
-    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#promotions">Seasonal</a></li>
     <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#booking" class="nav-cta">Book Now</a></li>
   </ul>
@@ -379,9 +383,10 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="closeMenu()">Services</a>
-  <a href="#promotions" onclick="closeMenu()">Promotions</a>
-  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#programs" onclick="closeMenu()">Programs</a>
+  <a href="#promotions" onclick="closeMenu()">Seasonal</a>
   <a href="#why-us" onclick="closeMenu()">Why Us</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
   <a href="#booking" onclick="closeMenu()" style="color:var(--gold);font-weight:700;">&#x1F4C5; Book Now</a>
 </div>
@@ -477,12 +482,12 @@
   </section>
 </div>
 
-<!-- PROMOTIONS -->
-<section id="promotions">
+<!-- OUR PROGRAMS -->
+<section id="programs">
   <div class="section-header">
-    <div class="section-label">Special Packages</div>
-    <h2 class="section-title">Seasonal Promotions</h2>
-    <p class="section-sub">Built for Newfoundland weather &mdash; because we know what your car goes through out here.</p>
+    <div class="section-label">Ongoing Care</div>
+    <h2 class="section-title">Our Programs</h2>
+    <p class="section-sub">Built for customers who want consistent, professional care &mdash; on a schedule that works for them.</p>
   </div>
   <div class="promos-grid">
     <div class="promo-card c-maintenance">
@@ -498,30 +503,72 @@
       </ul>
       <p class="promo-note">* Requires a completed Full Detail to be eligible</p>
     </div>
-    <div class="promo-card c-spring">
-      <div class="promo-season" style="color:#38bdf8;">&#x1F331; Spring Special</div>
-      <div class="promo-name">Spring Detail</div>
-      <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-      <div class="promo-price" style="color:#38bdf8;">$200 &ndash; $250</div>
+    <div class="promo-card c-fleet">
+      <div class="promo-season" style="color:var(--gold);">&#x1F698; Fleet Program</div>
+      <div class="promo-name">Business &amp; Fleet Detailing</div>
+      <div class="promo-time">&#x1F4C5; Flexible scheduling</div>
+      <div class="promo-price" style="color:var(--gold);">Custom Pricing</div>
       <ul class="promo-features">
-        <li>Everything in Full Detail</li>
-        <li>Salt stain removal</li>
-        <li>Underbody cleaning</li>
+        <li>For businesses with 2 or more vehicles</li>
+        <li>Recurring scheduled appointments</li>
+        <li>Volume pricing across your fleet</li>
+        <li>Flexible around your business hours</li>
+        <li>Professional invoicing available</li>
       </ul>
-      <p class="promo-note">Wash away the winter &mdash; road salt, grime, and all.</p>
+      <a href="mailto:info@adautospa.ca?subject=Fleet%20Program%20Inquiry" class="btn btn-gold" style="width:100%;text-align:center;padding:13px;display:block;margin-top:8px;">&#x2709;&#xFE0F; Get a Quote</a>
     </div>
-    <div class="promo-card c-fall">
-      <div class="promo-season" style="color:var(--gold);">&#x1F342; Fall Special</div>
-      <div class="promo-name">Fall Detail</div>
-      <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-      <div class="promo-price" style="color:var(--gold);">$220 &ndash; $270</div>
-      <ul class="promo-features">
-        <li>Everything in Full Detail</li>
-        <li>Ceramic spray protection</li>
-        <li>Engine bay cleaning</li>
-      </ul>
-      <p class="promo-note">Prep your car for the Newfoundland winter ahead.</p>
+  </div>
+</section>
+
+<!-- SEASONAL PROMOTIONS -->
+<div class="bg-stripe-section">
+  <section id="promotions">
+    <div class="section-header">
+      <div class="section-label">Limited Time</div>
+      <h2 class="section-title">Seasonal Promotions</h2>
+      <p class="section-sub">Built for Newfoundland weather &mdash; because we know what your car goes through out here.</p>
     </div>
+    <div class="promos-grid">
+      <div class="promo-card c-spring">
+        <div class="promo-season" style="color:#38bdf8;">&#x1F331; Spring Special</div>
+        <div class="promo-name">Spring Detail</div>
+        <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
+        <div class="promo-price" style="color:#38bdf8;">$200 &ndash; $250</div>
+        <ul class="promo-features">
+          <li>Everything in Full Detail</li>
+          <li>Salt stain removal</li>
+          <li>Underbody cleaning</li>
+        </ul>
+        <p class="promo-note">Wash away the winter &mdash; road salt, grime, and all.</p>
+      </div>
+      <div class="promo-card c-fall">
+        <div class="promo-season" style="color:var(--gold);">&#x1F342; Fall Special</div>
+        <div class="promo-name">Fall Detail</div>
+        <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
+        <div class="promo-price" style="color:var(--gold);">$220 &ndash; $270</div>
+        <ul class="promo-features">
+          <li>Everything in Full Detail</li>
+          <li>Ceramic spray protection</li>
+          <li>Engine bay cleaning</li>
+        </ul>
+        <p class="promo-note">Prep your car for the Newfoundland winter ahead.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- WHY CHOOSE US -->
+<section id="why-us">
+  <div class="section-header">
+    <div class="section-label">The AD Auto Spa Difference</div>
+    <h2 class="section-title">Why Choose Us</h2>
+    <p class="section-sub">We come to you, we use pro-grade products, and we care about every vehicle we touch.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">&#x1F3E0;</div><div class="why-title">We Come to You</div><div class="why-text">No drop-offs, no waiting rooms. We show up at your home or work and leave your car spotless.</div></div>
+    <div class="why-card"><div class="why-icon">&#x2744;&#xFE0F;</div><div class="why-title">Built for Newfoundland</div><div class="why-text">We know NL winters. Our services fight road salt, harsh conditions, and everything your car faces here.</div></div>
+    <div class="why-card"><div class="why-icon">&#x1F91C;</div><div class="why-title">Hand-Done Every Time</div><div class="why-text">Every detail is done by hand using professional-grade products. Your vehicle deserves more than a drive-through.</div></div>
+    <div class="why-card"><div class="why-icon">&#x1F4C5;</div><div class="why-title">7 Days a Week</div><div class="why-text">Flexible scheduling by appointment &mdash; mornings, evenings, weekends. We work around your schedule.</div></div>
   </div>
 </section>
 
@@ -629,21 +676,6 @@
     </div>
   </section>
 </div>
-
-<!-- WHY CHOOSE US -->
-<section id="why-us">
-  <div class="section-header">
-    <div class="section-label">The AD Auto Spa Difference</div>
-    <h2 class="section-title">Why Choose Us</h2>
-    <p class="section-sub">We come to you, we use pro-grade products, and we care about every vehicle we touch.</p>
-  </div>
-  <div class="why-grid">
-    <div class="why-card"><div class="why-icon">&#x1F3E0;</div><div class="why-title">We Come to You</div><div class="why-text">No drop-offs, no waiting rooms. We show up at your home or work and leave your car spotless.</div></div>
-    <div class="why-card"><div class="why-icon">&#x2744;&#xFE0F;</div><div class="why-title">Built for Newfoundland</div><div class="why-text">We know NL winters. Our services fight road salt, harsh conditions, and everything your car faces here.</div></div>
-    <div class="why-card"><div class="why-icon">&#x1F91C;</div><div class="why-title">Hand-Done Every Time</div><div class="why-text">Every detail is done by hand using professional-grade products. Your vehicle deserves more than a drive-through.</div></div>
-    <div class="why-card"><div class="why-icon">&#x1F4C5;</div><div class="why-title">7 Days a Week</div><div class="why-text">Flexible scheduling by appointment &mdash; mornings, evenings, weekends. We work around your schedule.</div></div>
-  </div>
-</section>
 
 <!-- BOOKING -->
 <div class="bg-stripe-section">
@@ -864,6 +896,7 @@
           <li><a href="#services">Quick Detail</a></li>
           <li><a href="#services">Full Detail</a></li>
           <li><a href="#addons">Add-Ons</a></li>
+          <li><a href="#programs">Our Programs</a></li>
           <li><a href="#promotions">Seasonal Promos</a></li>
         </ul>
       </div>
