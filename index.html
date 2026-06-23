@@ -85,7 +85,14 @@
       font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px;
     }
     .hero h1 { font-size: clamp(38px,6vw,70px); font-weight: 800; line-height: 1.08; margin-bottom: 22px; letter-spacing: -1px; }
-    .hero h1 span { color: var(--gold); }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--gold) 20%, #fff8d6 50%, var(--gold) 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3.5s linear infinite;
+    }
     .hero p { font-size: clamp(16px,2vw,19px); color: var(--muted2); max-width: 580px; margin: 0 auto 40px; }
     .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; border: none; transition: all .2s; text-decoration: none; letter-spacing: .2px; }
@@ -163,9 +170,9 @@
     .promo-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     }
-    .promo-card.c-maintenance::before { background: var(--green); }
-    .promo-card.c-spring::before { background: #38bdf8; }
-    .promo-card.c-fall::before { background: var(--gold); }
+    .promo-card.c-maintenance::before { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+    .promo-card.c-spring::before { background: #4ade80; }
+    .promo-card.c-fall::before { background: #f97316; }
     .promo-card.c-fleet::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
     .promo-card.c-fleet { border-color: rgba(201,168,76,0.4); display: flex; flex-direction: column; }
     .promo-card.c-fleet .promo-features { flex: 1; }
@@ -245,7 +252,24 @@
     .step-line.completed { background: var(--green); }
     .form-step { display: none; }
     .form-step.active { display: block; animation: fadeIn .3s ease; }
-    @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeIn  { from { opacity:0; transform:translateY(8px);  } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes shimmer { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
+    @keyframes pulseGlow {
+      0%, 55%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      28%            { box-shadow: 0 0 0 11px rgba(201,168,76,0.35); }
+    }
+
+    /* ── HERO ENTRANCE ── */
+    .hero-content > * { opacity:0; animation: fadeUp .75s ease forwards; }
+    .hero-content > *:nth-child(1) { animation-delay:.1s; }
+    .hero-content > *:nth-child(2) { animation-delay:.26s; }
+    .hero-content > *:nth-child(3) { animation-delay:.42s; }
+    .hero-content > *:nth-child(4) { animation-delay:.57s; }
+    .hero-content > *:nth-child(5) { animation-delay:.72s; }
+
+    /* ── CTA PULSE ── */
+    .nav-cta { animation: pulseGlow 4s ease-in-out infinite; }
     .step-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     .step-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .form-group { margin-bottom: 20px; }
@@ -358,8 +382,8 @@
       .btn { justify-content: center; }
       nav { padding: 0 16px; }
     }
+
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -393,8 +417,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home" style="max-width:100%;padding:0;">
-  <div class="hero-content">
-    <div class="hero-badge">&#x1F697; Mobile Detailing &middot; St. John&#x2019;s, NL</div>
+  <div class="hero-content"><div class="hero-badge">&#x1F697; Mobile Detailing &middot; St. John&#x2019;s, NL</div>
     <h1>Professional Detailing<br><span>At Your Door</span></h1>
     <p>No drop-offs. No waiting rooms. AD Auto Spa brings the detail shop directly to you &mdash; 7 days a week, wherever you are in St. John&#x2019;s and surrounding areas.</p>
     <div class="hero-btns">
@@ -427,13 +450,13 @@
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-outline service-btn" data-service="Exterior Detail" data-min="70" data-max="90">Book This Package</a>
+      <a href="#booking" class="btn btn-gold service-btn" data-service="Exterior Detail" data-min="70" data-max="90">Book this service</a>
     </div>
     <div class="service-card featured">
       <div class="popular-badge">Most Popular</div>
       <div class="service-icon">&#x2728;</div>
       <div class="service-name">Quick Detail</div>
-      <div class="service-time">&#x23F1; 45&ndash;60 minutes</div>
+      <div class="service-time">&#x23F1; ~1 hour</div>
       <div class="service-price">$105 <span>&ndash; $135</span></div>
       <ul class="service-features">
         <li>Full exterior hand wash and dry</li>
@@ -441,23 +464,23 @@
         <li>Interior vacuum and wipe down</li>
         <li>Interior windows cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-primary service-btn" data-service="Quick Detail" data-min="105" data-max="135">Book This Package</a>
+      <a href="#booking" class="btn btn-primary service-btn" data-service="Quick Detail" data-min="105" data-max="135">Book this service</a>
     </div>
     <div class="service-card">
       <div class="service-icon">&#x1F48E;</div>
       <div class="service-name">Full Detail</div>
-      <div class="service-time">&#x23F1; 2&ndash;3 hours</div>
+      <div class="service-time">&#x23F1; ~3 hours</div>
       <div class="service-price">$210 <span>&ndash; $280</span></div>
       <ul class="service-features">
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
+        <li>Wax spray protection</li>
         <li>Interior vacuum and wipe down</li>
         <li>Interior windows cleaned</li>
-        <li>Wax spray protection</li>
-        <li>Full interior steam clean</li>
         <li>Interior mats cleaned</li>
+        <li>Full interior steam cleaned</li>
       </ul>
-      <a href="#booking" class="btn btn-gold service-btn" data-service="Full Detail" data-min="210" data-max="280">Book This Package</a>
+      <a href="#booking" class="btn btn-gold service-btn" data-service="Full Detail" data-min="210" data-max="280">Book this service</a>
     </div>
   </div>
 </section>
@@ -491,10 +514,10 @@
   </div>
   <div class="promos-grid">
     <div class="promo-card c-maintenance">
-      <div class="promo-season" style="color:var(--green);">&#x1F504; Maintenance Program</div>
+      <div class="promo-season" style="color:#22d3ee;">&#x1F504; Maintenance Program</div>
       <div class="promo-name">Maintenance Detail</div>
       <div class="promo-time">&#x23F1; 1&ndash;2 hours</div>
-      <div class="promo-price" style="color:var(--green);">$70 &ndash; $100</div>
+      <div class="promo-price" style="color:#22d3ee;">$70 &ndash; $100</div>
       <ul class="promo-features">
         <li>Full exterior hand wash and dry</li>
         <li>Wheels and tires cleaned</li>
@@ -502,6 +525,7 @@
         <li>Interior windows cleaned</li>
       </ul>
       <p class="promo-note">* Requires a completed Full Detail to be eligible</p>
+      <a href="#booking" class="btn btn-outline service-btn" style="margin-top:16px;background:#22d3ee;border-color:#22d3ee;color:#0d0d0d;" data-service="Maintenance Detail" data-min="70" data-max="100">Book this service</a>
     </div>
     <div class="promo-card c-fleet">
       <div class="promo-season" style="color:var(--gold);">&#x1F698; Fleet Program</div>
@@ -530,28 +554,30 @@
     </div>
     <div class="promos-grid">
       <div class="promo-card c-spring">
-        <div class="promo-season" style="color:#38bdf8;">&#x1F331; Spring Special</div>
+        <div class="promo-season" style="color:#4ade80;">&#x1F331; Spring Special</div>
         <div class="promo-name">Spring Detail</div>
         <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-        <div class="promo-price" style="color:#38bdf8;">$200 &ndash; $250</div>
+        <div class="promo-price" style="color:#4ade80;">$200 &ndash; $250</div>
         <ul class="promo-features">
           <li>Everything in Full Detail</li>
           <li>Salt stain removal</li>
           <li>Underbody cleaning</li>
         </ul>
         <p class="promo-note">Wash away the winter &mdash; road salt, grime, and all.</p>
+        <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;">&#x23F3; Available in spring &mdash; check back soon</p>
       </div>
       <div class="promo-card c-fall">
-        <div class="promo-season" style="color:var(--gold);">&#x1F342; Fall Special</div>
+        <div class="promo-season" style="color:#f97316;">&#x1F342; Fall Special</div>
         <div class="promo-name">Fall Detail</div>
         <div class="promo-time">&#x23F1; 3&ndash;4 hours</div>
-        <div class="promo-price" style="color:var(--gold);">$220 &ndash; $270</div>
+        <div class="promo-price" style="color:#f97316;">$220 &ndash; $270</div>
         <ul class="promo-features">
           <li>Everything in Full Detail</li>
-          <li>Ceramic spray protection</li>
           <li>Engine bay cleaning</li>
+          <li>Ceramic spray protection</li>
         </ul>
         <p class="promo-note">Prep your car for the Newfoundland winter ahead.</p>
+        <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;">&#x23F3; Available in fall &mdash; check back soon</p>
       </div>
     </div>
   </section>
@@ -683,192 +709,22 @@
     <div class="section-header" style="text-align:center;">
       <div class="section-label">Easy Online Booking</div>
       <h2 class="section-title">Book Your Appointment</h2>
-      <p class="section-sub" style="margin:0 auto;">A 20% deposit is required to secure your booking. We will confirm your appointment by phone or email.</p>
+      <p class="section-sub" style="margin:0 auto;">Select your service, pick a time, and secure your spot — all online in minutes.</p>
     </div>
-    <div class="booking-wrapper">
-      <div class="steps-indicator" id="stepsIndicator">
-        <div class="step-dot active" id="dot1">1</div><div class="step-line" id="line1"></div>
-        <div class="step-dot" id="dot2">2</div><div class="step-line" id="line2"></div>
-        <div class="step-dot" id="dot3">3</div><div class="step-line" id="line3"></div>
-        <div class="step-dot" id="dot4">4</div><div class="step-line" id="line4"></div>
-        <div class="step-dot" id="dot5">5</div><div class="step-line" id="line5"></div>
-        <div class="step-dot" id="dot6">6</div><div class="step-line" id="line6"></div>
-        <div class="step-dot" id="dot7">7</div>
-      </div>
-
-      <!-- Step 1 -->
-      <div class="form-step active" id="step1">
-        <div class="step-title">Your Information</div>
-        <div class="step-sub">Let&#x2019;s start with your basic contact details.</div>
-        <div class="form-row">
-          <div class="form-group"><label>First Name *</label><input type="text" id="firstName" placeholder="John"></div>
-          <div class="form-group"><label>Last Name *</label><input type="text" id="lastName" placeholder="Smith"></div>
-        </div>
-        <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="john@example.com"></div>
-        <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" placeholder="(709) 555-0000"></div>
-        <div class="form-nav"><div></div><button class="btn btn-next" onclick="nextStep(1)">Next: Vehicle Info &#x2192;</button></div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="form-step" id="step2">
-        <div class="step-title">Your Vehicle</div>
-        <div class="step-sub">Tell us about the vehicle we&#x2019;ll be detailing.</div>
-        <div class="form-row">
-          <div class="form-group"><label>Year *</label><input type="number" id="vYear" placeholder="2022" min="1990" max="2027"></div>
-          <div class="form-group"><label>Make *</label><input type="text" id="vMake" placeholder="Toyota"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Model *</label><input type="text" id="vModel" placeholder="RAV4"></div>
-          <div class="form-group"><label>Colour</label><input type="text" id="vColour" placeholder="Silver"></div>
-        </div>
-        <div class="form-group"><label>Vehicle Type *</label>
-          <select id="vType">
-            <option value="">Select type...</option>
-            <option>Sedan / Coupe</option><option>SUV / Crossover</option>
-            <option>Truck</option><option>Van / Minivan</option><option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Additional Notes</label><textarea id="vNotes" placeholder="Specific concerns, damage areas, or anything we should know..."></textarea></div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(2)">&#x2190; Back</button>
-          <button class="btn btn-next" onclick="nextStep(2)">Next: Select Service &#x2192;</button>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="form-step" id="step3">
-        <div class="step-title">Select Your Service</div>
-        <div class="step-sub">Choose the package that best fits your needs.</div>
-        <div class="service-select-grid">
-          <label class="service-option" onclick="selectService(this,'Exterior Detail',70,90)"><input type="radio" name="service"><div class="so-name">&#x1F6BF; Exterior Detail</div><div class="so-price">$70&ndash;$90</div><div class="so-time">~30 min</div></label>
-          <label class="service-option" onclick="selectService(this,'Quick Detail',105,135)"><input type="radio" name="service"><div class="so-name">&#x2728; Quick Detail</div><div class="so-price">$105&ndash;$135</div><div class="so-time">45&ndash;60 min</div></label>
-          <label class="service-option" onclick="selectService(this,'Full Detail',210,280)"><input type="radio" name="service"><div class="so-name">&#x1F48E; Full Detail</div><div class="so-price">$210&ndash;$280</div><div class="so-time">2&ndash;3 hrs</div></label>
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;">Or a seasonal promotion:</div>
-        <div class="service-select-grid">
-          <label class="service-option" onclick="selectService(this,'Maintenance Detail',70,100)"><input type="radio" name="service"><div class="so-name">&#x1F504; Maintenance</div><div class="so-price">$70&ndash;$100</div><div class="so-time">1&ndash;2 hrs</div></label>
-          <label class="service-option" onclick="selectService(this,'Spring Detail',200,250)"><input type="radio" name="service"><div class="so-name">&#x1F331; Spring Detail</div><div class="so-price">$200&ndash;$250</div><div class="so-time">3&ndash;4 hrs</div></label>
-          <label class="service-option" onclick="selectService(this,'Fall Detail',220,270)"><input type="radio" name="service"><div class="so-name">&#x1F342; Fall Detail</div><div class="so-price">$220&ndash;$270</div><div class="so-time">3&ndash;4 hrs</div></label>
-        </div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(3)">&#x2190; Back</button>
-          <button class="btn btn-next" onclick="nextStep(3)">Next: Add-Ons &#x2192;</button>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="form-step" id="step4">
-        <div class="step-title">Add-On Services</div>
-        <div class="step-sub">Enhance your detail with any of these services (optional).</div>
-        <div class="addon-select-grid">
-          <label class="addon-option" onclick="toggleAddon(this,'Pet Hair Removal',50)"><input type="checkbox"><div class="ao-icon">&#x1F43E;</div><div><div class="ao-name">Pet Hair Removal</div><div class="ao-price">+$50</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Salt Stain Removal',50)"><input type="checkbox"><div class="ao-icon">&#x1F9C2;</div><div><div class="ao-name">Salt Stain Removal</div><div class="ao-price">+$50</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Engine Bay Cleaning',45)"><input type="checkbox"><div class="ao-icon">&#x1F527;</div><div><div class="ao-name">Engine Bay Cleaning</div><div class="ao-price">+$45</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Headlight Restoration',60)"><input type="checkbox"><div class="ao-icon">&#x1F4A1;</div><div><div class="ao-name">Headlight Restoration</div><div class="ao-price">+$60</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Odor Removal',75)"><input type="checkbox"><div class="ao-icon">&#x1F33F;</div><div><div class="ao-name">Odor Removal</div><div class="ao-price">+$75</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Underbody Cleaning',35)"><input type="checkbox"><div class="ao-icon">&#x1F6E1;</div><div><div class="ao-name">Underbody Cleaning</div><div class="ao-price">+$35</div></div></label>
-          <label class="addon-option" onclick="toggleAddon(this,'Ceramic Spray Protection',65)"><input type="checkbox"><div class="ao-icon">&#x1F3C6;</div><div><div class="ao-name">Ceramic Spray</div><div class="ao-price">+$65</div></div></label>
-        </div>
-        <div class="price-summary">
-          <div class="price-row"><span>Service</span><span id="ps4-service">&ndash;</span></div>
-          <div class="price-row" id="ps4-addons-row" style="display:none"><span>Add-Ons</span><span id="ps4-addons">$0</span></div>
-          <div class="price-row total"><span>Estimated Total</span><span id="ps4-total">&ndash;</span></div>
-        </div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(4)">&#x2190; Back</button>
-          <button class="btn btn-next" onclick="nextStep(4)">Next: Vehicle Photos &#x2192;</button>
-        </div>
-      </div>
-
-      <!-- Step 5 -->
-      <div class="form-step" id="step5">
-        <div class="step-title">Vehicle Photos</div>
-        <div class="step-sub">Upload photos of your vehicle so we can prepare (optional but helpful).</div>
-        <div class="file-upload-area" onclick="document.getElementById('vehiclePhotos').click()">
-          <div class="file-upload-icon">&#x1F4F7;</div>
-          <p>Click to upload vehicle photos</p>
-          <p style="font-size:12px;margin-top:4px;">JPG, PNG, HEIC &middot; Up to 10 photos</p>
-          <input type="file" id="vehiclePhotos" multiple accept="image/*" style="display:none" onchange="handleFiles(this)">
-        </div>
-        <div class="uploaded-files" id="uploadedFiles"></div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(5)">&#x2190; Back</button>
-          <button class="btn btn-next" onclick="nextStep(5)">Next: Date &amp; Time &#x2192;</button>
-        </div>
-      </div>
-
-      <!-- Step 6 -->
-      <div class="form-step" id="step6">
-        <div class="step-title">Date, Time &amp; Location</div>
-        <div class="step-sub">When and where should we come to you?</div>
-        <div class="date-grid">
-          <div class="form-group"><label>Preferred Date *</label><input type="date" id="prefDate"></div>
-          <div class="form-group"><label>Preferred Time *</label>
-            <select id="prefTime">
-              <option value="">Select a time...</option>
-              <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
-              <option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option>
-              <option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group"><label>Service Address *</label><input type="text" id="address" placeholder="123 Main St, St. John&#x2019;s, NL"></div>
-        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;margin-top:4px;">Quick Questions</div>
-        <div class="form-group">
-          <label>Access to exterior water at this location? *</label>
-          <div class="radio-group">
-            <label class="radio-option" onclick="selectRadio(this,'water')"><input type="radio" name="water" value="Yes"><div class="radio-label">&#x2705; Yes</div></label>
-            <label class="radio-option" onclick="selectRadio(this,'water')"><input type="radio" name="water" value="No"><div class="radio-label">&#x274C; No</div></label>
-            <label class="radio-option" onclick="selectRadio(this,'water')"><input type="radio" name="water" value="Unsure"><div class="radio-label">&#x1F937; Unsure</div></label>
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:16px;">
-          <label>Access to exterior electricity at this location? *</label>
-          <div class="radio-group">
-            <label class="radio-option" onclick="selectRadio(this,'electric')"><input type="radio" name="electric" value="Yes"><div class="radio-label">&#x2705; Yes</div></label>
-            <label class="radio-option" onclick="selectRadio(this,'electric')"><input type="radio" name="electric" value="No"><div class="radio-label">&#x274C; No</div></label>
-            <label class="radio-option" onclick="selectRadio(this,'electric')"><input type="radio" name="electric" value="Unsure"><div class="radio-label">&#x1F937; Unsure</div></label>
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(6)">&#x2190; Back</button>
-          <button class="btn btn-next" onclick="nextStep(6)">Next: Review &amp; Confirm &#x2192;</button>
-        </div>
-      </div>
-
-      <!-- Step 7 -->
-      <div class="form-step" id="step7">
-        <div class="step-title">Review &amp; Confirm</div>
-        <div class="step-sub">Review your booking details before submitting.</div>
-        <div class="price-summary" id="reviewSummary" style="background:var(--card2);"></div>
-        <div class="deposit-note">
-          <strong style="color:var(--gold);">20% Deposit Required</strong><br>
-          A deposit of <strong id="depositAmt" style="color:var(--gold);">&ndash;</strong> is required to confirm your booking. We will contact you to arrange payment and finalize your appointment.
-        </div>
-        <div class="form-group"><label>Additional Notes or Requests</label><textarea id="finalNotes" placeholder="Anything else you&#x2019;d like us to know?"></textarea></div>
-        <div class="form-nav">
-          <button class="btn btn-back" onclick="prevStep(7)">&#x2190; Back</button>
-          <button class="btn btn-submit" onclick="submitBooking()">&#x2705; Confirm Booking</button>
-        </div>
-      </div>
-
-      <!-- Success -->
-      <div class="form-step" id="stepSuccess">
-        <div class="success-box">
-          <div class="success-icon">&#x1F389;</div>
-          <div class="success-title">Booking Request Sent!</div>
-          <div class="success-text">Thank you! We&#x2019;ve received your booking request and will contact you within 24 hours to confirm your appointment and arrange your deposit payment.</div>
-          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-            <a href="mailto:info@adautospa.ca" class="btn btn-primary">&#x2709;&#xFE0F; Email Us</a>
-          </div>
-        </div>
-      </div>
+    <div style="max-width:900px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.35);">
+      <iframe
+        src="https://app.urable.com/virtual-shop/yk652Rbh9sxZsFgIEUXS"
+        width="100%"
+        height="780"
+        frameborder="0"
+        allow="payment"
+        style="display:block;border:none;"
+        title="Book an Appointment – AD Auto Spa"
+      ></iframe>
     </div>
   </section>
-</div>
 
-<!-- CONTACT -->
-<section id="contact">
+  <section id="contact">
   <div class="section-header">
     <div class="section-label">Get in Touch</div>
     <h2 class="section-title">Contact Us</h2>
@@ -921,160 +777,49 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── EmailJS Configuration ── Fill these in after creating your EmailJS account
-const EMAILJS_PUBLIC_KEY      = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID      = 'YOUR_SERVICE_ID';
-const EMAILJS_BIZ_TEMPLATE    = 'YOUR_BUSINESS_TEMPLATE_ID';
-const EMAILJS_CUSTOMER_TEMPLATE = 'YOUR_CUSTOMER_TEMPLATE_ID';
-emailjs.init(EMAILJS_PUBLIC_KEY);
-
-const state={service:null,serviceMin:0,serviceMax:0,addons:[],addonsTotal:0};
-
-function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');m.classList.toggle('open');h.classList.toggle('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.querySelector('.hamburger').classList.remove('open');}
-
-function showStep(n){
-  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
-  document.getElementById(n==='success'?'stepSuccess':'step'+n).classList.add('active');
-  for(let i=1;i<=7;i++){
-    const dot=document.getElementById('dot'+i);
-    const line=document.getElementById('line'+i);
-    dot.classList.remove('active','completed');
-    if(typeof n==='number'){if(i<n)dot.classList.add('completed');else if(i===n)dot.classList.add('active');}
-    else dot.classList.add('completed');
-    if(line){if(typeof n==='number'&&i<n)line.classList.add('completed');else if(typeof n!=='number')line.classList.add('completed');else line.classList.remove('completed');}
-  }
-  document.querySelector('.booking-wrapper').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function nextStep(from){if(!validateStep(from))return;if(from===6)buildReview();showStep(from+1);}
-function prevStep(from){if(from>1)showStep(from-1);}
-
-function validateStep(n){
-  if(n===1){const fn=document.getElementById('firstName').value.trim(),ln=document.getElementById('lastName').value.trim(),em=document.getElementById('email').value.trim(),ph=document.getElementById('phone').value.trim();if(!fn||!ln||!em||!ph){showToast('Please fill in all required fields.','error');return false;}if(!/\S+@\S+\.\S+/.test(em)){showToast('Please enter a valid email.','error');return false;}}
-  if(n===2){if(!document.getElementById('vYear').value||!document.getElementById('vMake').value.trim()||!document.getElementById('vModel').value.trim()||!document.getElementById('vType').value){showToast('Please fill in all vehicle details.','error');return false;}}
-  if(n===3){if(!state.service){showToast('Please select a service.','error');return false;}}
-  if(n===6){if(!document.getElementById('prefDate').value||!document.getElementById('prefTime').value||!document.getElementById('address').value.trim()){showToast('Please fill in date, time, and address.','error');return false;}}
-  return true;
-}
-
-function selectService(el,name,min,max){
-  document.querySelectorAll('.service-option').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  state.service=name;state.serviceMin=min;state.serviceMax=max;
-  updatePrice();
-}
-function toggleAddon(el,name,price){
-  el.classList.toggle('selected');
-  if(el.classList.contains('selected')){state.addons.push({name,price});state.addonsTotal+=price;}
-  else{state.addons=state.addons.filter(a=>a.name!==name);state.addonsTotal-=price;}
-  updatePrice();
-}
-function selectRadio(el,name){
-  document.querySelectorAll('[name="'+name+'"]').forEach(r=>r.closest('.radio-option').classList.remove('selected'));
-  el.classList.add('selected');
-}
-function updatePrice(){
-  const s=document.getElementById('ps4-service'),a=document.getElementById('ps4-addons'),t=document.getElementById('ps4-total'),ar=document.getElementById('ps4-addons-row');
-  if(state.service){s.textContent='$'+state.serviceMin+'–$'+state.serviceMax;t.textContent='$'+(state.serviceMin+state.addonsTotal)+'–$'+(state.serviceMax+state.addonsTotal);}
-  if(state.addonsTotal>0){a.textContent='+$'+state.addonsTotal;ar.style.display='flex';}else{ar.style.display='none';}
-}
-function buildReview(){
-  const fn=document.getElementById('firstName').value,ln=document.getElementById('lastName').value,em=document.getElementById('email').value,ph=document.getElementById('phone').value;
-  const yr=document.getElementById('vYear').value,mk=document.getElementById('vMake').value,md=document.getElementById('vModel').value,vt=document.getElementById('vType').value;
-  const dt=document.getElementById('prefDate').value,tm=document.getElementById('prefTime').value,ad=document.getElementById('address').value;
-  const wr=document.querySelector('.radio-option.selected input[name="water"]'),er=document.querySelector('.radio-option.selected input[name="electric"]');
-  const tMin=state.serviceMin+state.addonsTotal,tMax=state.serviceMax+state.addonsTotal;
-  const dMin=Math.round(tMin*0.2),dMax=Math.round(tMax*0.2);
-  document.getElementById('depositAmt').textContent='$'+dMin+'–$'+dMax;
-  const addonList=state.addons.length?state.addons.map(a=>a.name+' (+$'+a.price+')').join(', '):'None';
-  document.getElementById('reviewSummary').innerHTML=
-    '<div class="price-row"><span>Name</span><span>'+fn+' '+ln+'</span></div>'+
-    '<div class="price-row"><span>Contact</span><span>'+ph+' &middot; '+em+'</span></div>'+
-    '<div class="price-row"><span>Vehicle</span><span>'+yr+' '+mk+' '+md+' ('+vt+')</span></div>'+
-    '<div class="price-row"><span>Service</span><span>'+state.service+'</span></div>'+
-    '<div class="price-row"><span>Add-Ons</span><span style="max-width:200px;text-align:right">'+addonList+'</span></div>'+
-    '<div class="price-row"><span>Date &amp; Time</span><span>'+dt+' at '+tm+'</span></div>'+
-    '<div class="price-row"><span>Location</span><span style="max-width:200px;text-align:right">'+ad+'</span></div>'+
-    '<div class="price-row"><span>Water Access</span><span>'+(wr?wr.value:'Not answered')+'</span></div>'+
-    '<div class="price-row"><span>Electricity Access</span><span>'+(er?er.value:'Not answered')+'</span></div>'+
-    '<div class="price-row total"><span>Estimated Total</span><span>$'+tMin+'–$'+tMax+'</span></div>'+
-    '<div class="price-row deposit"><span>Deposit (20%)</span><span>$'+dMin+'–$'+dMax+'</span></div>';
-}
-async function submitBooking(){
-  const btn=document.querySelector('.btn-submit');
-  btn.disabled=true;btn.textContent='Sending…';
-
-  const fn=document.getElementById('firstName').value,ln=document.getElementById('lastName').value,em=document.getElementById('email').value,ph=document.getElementById('phone').value;
-  const yr=document.getElementById('vYear').value,mk=document.getElementById('vMake').value,md=document.getElementById('vModel').value,vt=document.getElementById('vType').value,vc=document.getElementById('vColour').value,vn=document.getElementById('vNotes').value;
-  const dt=document.getElementById('prefDate').value,tm=document.getElementById('prefTime').value,ad=document.getElementById('address').value;
-  const wr=document.querySelector('.radio-option.selected input[name="water"]'),er=document.querySelector('.radio-option.selected input[name="electric"]');
-  const fn2=document.getElementById('finalNotes').value;
-  const tMin=state.serviceMin+state.addonsTotal,tMax=state.serviceMax+state.addonsTotal;
-  const dMin=Math.round(tMin*0.2),dMax=Math.round(tMax*0.2);
-  const addonList=state.addons.length?state.addons.map(a=>a.name+' (+$'+a.price+')').join(', '):'None';
-
-  const params={
-    customer_name: fn+' '+ln,
-    customer_email: em,
-    customer_phone: ph,
-    vehicle: yr+' '+mk+' '+md+' ('+vt+')'+(vc?' — '+vc:''),
-    vehicle_notes: vn||'None',
-    service: state.service,
-    addons: addonList,
-    total: '$'+tMin+'–$'+tMax,
-    deposit: '$'+dMin+'–$'+dMax,
-    date: dt,
-    time: tm,
-    address: ad,
-    water_access: wr?wr.value:'Not answered',
-    electricity_access: er?er.value:'Not answered',
-    additional_notes: fn2||'None'
-  };
-
-  try {
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_BIZ_TEMPLATE, {...params, to_email:'info@adautospa.ca'});
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CUSTOMER_TEMPLATE, {...params, to_email:em});
-    showStep('success');
-  } catch(err) {
-    console.error('EmailJS error:',err);
-    showToast('Could not send booking — please email info@adautospa.ca directly.','error');
-    btn.disabled=false;btn.textContent='✅ Confirm Booking';
-  }
-}
-function handleFiles(input){
-  const c=document.getElementById('uploadedFiles');c.innerHTML='';
-  Array.from(input.files).slice(0,10).forEach(f=>{const d=document.createElement('div');d.className='file-chip';d.textContent=f.name;c.appendChild(d);});
-}
-function showToast(msg,type){
-  const t=document.getElementById('toast');t.textContent=msg;
-  t.className='toast'+(type==='error'?' error':'');
-  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-document.querySelectorAll('.service-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const svc=btn.getAttribute('data-service'),min=parseInt(btn.getAttribute('data-min')),max=parseInt(btn.getAttribute('data-max'));
-    state.service=svc;state.serviceMin=min;state.serviceMax=max;
-    document.querySelectorAll('.service-option').forEach(o=>{
-      const inp=o.querySelector('input');
-      if(inp)o.classList.toggle('selected',inp.value===svc||(o.querySelector('.so-name')&&o.querySelector('.so-name').textContent.includes(svc.split(' ')[0])));
-    });
-    updatePrice();
-  });
-});
-
-document.getElementById('prefDate').setAttribute('min',new Date().toISOString().split('T')[0]);
-
-document.addEventListener('click',function(e){
-  const m=document.getElementById('mobileMenu'),h=document.querySelector('.hamburger');
-  if(m.classList.contains('open')&&!m.contains(e.target)&&!h.contains(e.target)){m.classList.remove('open');h.classList.remove('open');}
-});
-
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}}),{threshold:0.08});
-document.querySelectorAll('.service-card,.addon-card,.promo-card,.why-card,.contact-card,.review-card').forEach(el=>{
-  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+// ── STAGGERED CARD SCROLL REVEALS ──
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target);}
+}),{threshold:0.08});
+document.querySelectorAll('.service-card,.addon-card,.promo-card,.why-card,.contact-card,.review-card').forEach((el,i)=>{
+  const delay=(i%3)*0.12;
+  el.style.opacity='0';el.style.transform='translateY(24px)';
+  el.style.transition=`opacity .55s ease ${delay}s,transform .55s ease ${delay}s`;
   obs.observe(el);
 });
+
+// ── SECTION HEADER REVEALS ──
+const obsH=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obsH.unobserve(e.target);}
+}),{threshold:0.15});
+document.querySelectorAll('.section-header').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(22px)';
+  el.style.transition='opacity .65s ease,transform .65s ease';
+  obsH.observe(el);
+});
+
+// ── NAV SCROLL GOLD BORDER ──
+window.addEventListener('scroll',function(){
+  document.querySelector('nav').style.borderBottomColor=
+    window.scrollY>60?'rgba(201,168,76,0.3)':'var(--border)';
+},{ passive:true });
+
+// ── HERO STAT COUNTERS ──
+function animateStat(el){
+  const txt=el.textContent;
+  const prefix=txt.startsWith('$')?'$':'';
+  const suffix=txt.endsWith('%')?'%':txt.includes('★')?'★':'';
+  const num=parseInt(txt.replace(/[^0-9]/g,''));
+  if(!num)return;
+  const dur=950,t0=performance.now();
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=prefix+Math.round(ease*num)+suffix;
+    if(p<1)requestAnimationFrame(tick);
+  })(performance.now());
+}
+setTimeout(()=>document.querySelectorAll('.hero-divider .stat-num').forEach(animateStat),750);
 </script>
 </body>
 </html>
