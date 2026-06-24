@@ -211,10 +211,25 @@
     .why-text { font-size: 14px; color: var(--muted2); line-height: 1.7; }
 
     /* ── REVIEWS ── */
-    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .reviews-grid {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 20px;
+      margin: 0 -24px;
+      padding-left: 24px;
+      padding-right: 24px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) rgba(255,255,255,0.06);
+    }
+    .reviews-grid::-webkit-scrollbar { height: 4px; }
+    .reviews-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 2px; }
+    .reviews-grid::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
     .review-card {
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px; transition: all .3s; position: relative;
+      flex: 0 0 320px; scroll-snap-align: start;
     }
     .review-card::before {
       content: '“'; position: absolute; top: 16px; right: 20px;
@@ -728,14 +743,20 @@
 </div>
 
 <!-- BOOKING -->
-<div class="bg-stripe-section">
-  <section id="booking">
+<section id="booking">
     <div class="section-header" style="text-align:center;">
       <div class="section-label">Easy Online Booking</div>
       <h2 class="section-title">Book Your Appointment</h2>
       <p class="section-sub" style="margin:0 auto;">Select your service, pick a time, and secure your spot — all online in minutes.</p>
     </div>
-    <div style="max-width:900px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.35);">
+    <div style="
+      max-width:900px;
+      margin:0 auto;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.3);
+    ">
+      <div style="height:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),#fff8d6,var(--gold),var(--gold-dark));"></div>
       <iframe
         src="https://app.urable.com/virtual-shop/yk652Rbh9sxZsFgIEUXS"
         width="100%"
@@ -746,8 +767,9 @@
         title="Book an Appointment – AD Auto Spa"
       ></iframe>
     </div>
-  </section>
+</section>
 
+<div class="bg-stripe-section">
   <section id="contact">
   <div class="section-header">
     <div class="section-label">Get in Touch</div>
@@ -755,11 +777,13 @@
     <p class="section-sub">Questions? We&#x2019;d love to hear from you.</p>
   </div>
   <div class="contact-grid">
+    <div class="contact-card"><div class="contact-icon">&#x1F4DE;</div><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:+17097025101">(709) 702-5101</a></div></div>
     <div class="contact-card"><div class="contact-icon">&#x2709;&#xFE0F;</div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:info@adautospa.ca">info@adautospa.ca</a></div></div>
     <div class="contact-card"><div class="contact-icon">&#x1F4CD;</div><div class="contact-label">Service Area</div><div class="contact-value">St. John&#x2019;s &amp; Surrounding Areas, NL</div></div>
     <div class="contact-card"><div class="contact-icon">&#x1F550;</div><div class="contact-label">Hours</div><div class="contact-value">By Appointment &middot; 7 Days a Week</div></div>
   </div>
 </section>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -786,6 +810,7 @@
           <li><a href="#booking">Book Appointment</a></li>
           <li><a href="#reviews">Customer Reviews</a></li>
           <li><a href="#why-us">Why Choose Us</a></li>
+          <li><a href="tel:+17097025101">(709) 702-5101</a></li>
           <li><a href="mailto:info@adautospa.ca">info@adautospa.ca</a></li>
         </ul>
       </div>
