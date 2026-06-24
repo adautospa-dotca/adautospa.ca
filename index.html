@@ -212,7 +212,7 @@
     .promo-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--shadow); }
     .promo-season { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
     .promo-name { font-size: 21px; font-weight: 700; margin-bottom: 5px; }
-    .promo-time { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .promo-time { font-size: 13px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; }
     .promo-price { font-size: 34px; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
     .promo-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
     .promo-features li { font-size: 14px; color: var(--muted2); display: flex; gap: 9px; align-items: flex-start; }
@@ -316,6 +316,10 @@
     .hero-content > *:nth-child(4) { animation-delay:.57s; }
     .hero-content > *:nth-child(5) { animation-delay:.72s; }
 
+
+    /* ── LIVE DATE CALENDAR ICON ── */
+    .cal-icon { display: inline-flex; vertical-align: middle; position: relative; top: -0.1em; flex-shrink: 0; }
+    .cal-icon svg { width: 1.2em; height: 1.2em; }
     /* ── CTA PULSE ── */
     .nav-cta { animation: pulseGlow 4s ease-in-out infinite; }
     .step-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
@@ -464,7 +468,7 @@
   <a href="#why-us" onclick="closeMenu()">Why Us</a>
   <a href="#reviews" onclick="closeMenu()">Reviews</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
-  <a href="#booking" onclick="closeMenu()" style="color:var(--gold);font-weight:700;">&#x1F4C5; Book Now</a>
+  <a href="#booking" onclick="closeMenu()" style="color:var(--gold);font-weight:700;"><span class="cal-icon"><span class="cal-day"></span></span> Book Now</a>
 </div>
 
 <!-- HERO -->
@@ -479,7 +483,7 @@
         <h1>Professional Detailing<br><span>At Your Door</span></h1>
         <p>No drop-offs. No waiting rooms. AD Auto Spa brings the detail shop directly to you &mdash; 7 days a week, wherever you are in St. John&#x2019;s and surrounding areas.</p>
         <div class="hero-btns">
-          <a href="#booking" class="btn btn-primary">&#x1F4C5; Book an Appointment</a>
+          <a href="#booking" class="btn btn-primary">Book an Appointment</a>
           <a href="#services" class="btn btn-outline">View Services</a>
         </div>
       </div>
@@ -590,7 +594,7 @@
     <div class="promo-card c-fleet">
       <div class="promo-season" style="color:var(--gold);">&#x1F698; Fleet Program</div>
       <div class="promo-name">Business &amp; Fleet Detailing</div>
-      <div class="promo-time">&#x1F4C5; Flexible scheduling</div>
+      <div class="promo-time"><span class="cal-icon" style="margin-right:6px;"><span class="cal-day"></span></span>Flexible scheduling</div>
       <div class="promo-price" style="color:var(--gold);">Custom Pricing</div>
       <ul class="promo-features">
         <li>For businesses with 2 or more vehicles</li>
@@ -654,7 +658,7 @@
     <div class="why-card"><div class="why-icon">&#x1F3E0;</div><div class="why-title">We Come to You</div><div class="why-text">No drop-offs, no waiting rooms. We show up at your home or work and leave your car spotless.</div></div>
     <div class="why-card"><div class="why-icon">&#x2744;&#xFE0F;</div><div class="why-title">Built for Newfoundland</div><div class="why-text">We know NL winters. Our services fight road salt, harsh conditions, and everything your car faces here.</div></div>
     <div class="why-card"><div class="why-icon">&#x1F91C;</div><div class="why-title">Hand-Done Every Time</div><div class="why-text">Every detail is done by hand using professional-grade products. Your vehicle deserves more than a drive-through.</div></div>
-    <div class="why-card"><div class="why-icon">&#x1F4C5;</div><div class="why-title">7 Days a Week</div><div class="why-text">Flexible scheduling by appointment &mdash; mornings, evenings, weekends. We work around your schedule.</div></div>
+    <div class="why-card"><div class="why-icon"><span class="cal-icon"><span class="cal-day"></span></span></div><div class="why-title">7 Days a Week</div><div class="why-text">Flexible scheduling by appointment &mdash; mornings, evenings, weekends. We work around your schedule.</div></div>
   </div>
 </section>
 
@@ -848,6 +852,24 @@
 
 <script>
 
+
+// ── LIVE DATE CALENDAR ICON ──
+(function(){
+  var now    = new Date();
+  var day    = now.getDate();
+  var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var mon    = months[now.getMonth()];
+  document.querySelectorAll('.cal-icon').forEach(function(el){
+    el.innerHTML =
+      '<svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg">'
+      + '<rect width="40" height="44" rx="7" fill="white"/>'
+      + '<rect width="40" height="15" rx="7" fill="#e53e3e"/>'
+      + '<rect y="8" width="40" height="7" fill="#e53e3e"/>'
+      + '<text x="20" y="11.5" text-anchor="middle" font-size="7" font-family="-apple-system,BlinkMacSystemFont,sans-serif" fill="white" font-weight="700">' + mon + '</text>'
+      + '<text x="20" y="37" text-anchor="middle" font-size="23" font-family="-apple-system,BlinkMacSystemFont,sans-serif" fill="#1c1c1e" font-weight="700">' + day + '</text>'
+      + '</svg>';
+  });
+})();
 // ── HAMBURGER MENU ──
 function toggleMenu(){
   const m=document.getElementById('mobileMenu');
