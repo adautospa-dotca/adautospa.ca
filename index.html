@@ -146,13 +146,15 @@
     }
     .hero p { font-size: clamp(15px,1.6vw,18px); color: var(--muted2); max-width: 520px; margin: 0 auto 40px; }
     .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; border: none; transition: all .2s; text-decoration: none; letter-spacing: .2px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; cursor: pointer; border: 2px solid transparent; transition: all .2s; text-decoration: none; letter-spacing: .2px; }
     .btn-primary { background: var(--gold); color: #000; }
-    .btn-primary:hover { background: var(--gold-dark); color: #000; transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
+    .btn-primary:hover { background: #0d0d0d; color: var(--gold); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border2); }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
     .btn-gold { background: var(--gold); color: #000; font-weight: 700; }
-    .btn-gold:hover { background: var(--gold-dark); color: #000; transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
+    .btn-gold:hover { background: #0d0d0d; color: var(--gold); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 28px var(--gold-glow); }
+    .btn-cyan { background: #22d3ee; color: #0d0d0d; font-weight: 700; }
+    .btn-cyan:hover { background: #0d0d0d; color: #22d3ee; border-color: #22d3ee; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,211,238,0.35); }
     .hero-divider {
       display: flex; align-items: center;
       justify-content: center; flex-wrap: wrap;
@@ -768,7 +770,7 @@
         <li>Interior windows cleaned</li>
       </ul>
       <p class="promo-note">* Requires a completed Full Detail to be eligible</p>
-      <a href="#booking" class="btn btn-outline service-btn" style="margin-top:16px;background:#22d3ee;border-color:#22d3ee;color:#0d0d0d;" data-service="Maintenance Detail" data-min="70" data-max="100">Book this service</a>
+      <a href="#booking" class="btn btn-cyan service-btn" style="margin-top:16px;" data-service="Maintenance Detail" data-min="70" data-max="100">Book this service</a>
     </div>
     <div class="promo-card c-fleet">
       <div class="promo-season" style="color:var(--gold);">&#x1F698; Fleet Program</div>
