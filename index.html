@@ -180,6 +180,7 @@
     .service-card {
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 32px; transition: all .3s; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
     .service-card::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
@@ -199,7 +200,7 @@
     .service-time { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
     .service-price { font-size: 38px; font-weight: 800; color: var(--gold); margin-bottom: 20px; letter-spacing: -1px; }
     .service-price span { font-size: 16px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
-    .service-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .service-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
     .service-features li { font-size: 14px; color: var(--muted2); }
     .service-btn { width: 100%; text-align: center; padding: 13px; }
 
@@ -219,6 +220,7 @@
     .promo-card {
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px; transition: all .3s; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
     .promo-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -228,7 +230,14 @@
     .promo-card.c-fall::before { background: #f97316; }
     .promo-card.c-fleet::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
     .promo-card.c-fleet { border-color: rgba(201,168,76,0.4); display: flex; flex-direction: column; }
-    .promo-card.c-fleet .promo-features { flex: 1; }
+    .promo-card.c-referral::before { background: linear-gradient(90deg, #15803d, #22c55e); }
+    .promo-card.c-referral { border-color: rgba(34,197,94,0.35); display: flex; flex-direction: column; }
+    .referral-reward { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding: 14px 0; border-top: 1px solid rgba(34,197,94,0.2); border-bottom: 1px solid rgba(34,197,94,0.2); }
+    .referral-reward-col { text-align: center; flex: 1; }
+    .referral-reward-divider { font-size: 22px; font-weight: 700; color: var(--muted); flex-shrink: 0; }
+    .referral-reward-amount { font-size: 34px; font-weight: 900; color: #22c55e; line-height: 1; }
+    .referral-reward-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+    .promo-features { flex: 1; }
     .promo-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--shadow); }
     .promo-season { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
     .promo-name { font-size: 21px; font-weight: 700; margin-bottom: 5px; }
@@ -758,6 +767,32 @@
     <p class="section-sub">Built for customers who want consistent, professional care &mdash; on a schedule that works for them.</p>
   </div>
   <div class="promos-grid">
+    <div class="promo-card c-referral">
+      <div class="promo-season" style="color:#22c55e;">&#x1F91D; Referral Program</div>
+      <div class="promo-name">Share the Shine</div>
+      <div class="promo-time">&#x2705; No sign-up required</div>
+      <div class="referral-reward">
+        <div class="referral-reward-col">
+          <div class="referral-reward-amount">$25</div>
+          <div class="referral-reward-label">You Get</div>
+        </div>
+        <div class="referral-reward-divider">+</div>
+        <div class="referral-reward-col">
+          <div class="referral-reward-amount">$15</div>
+          <div class="referral-reward-label">Friend Gets</div>
+        </div>
+      </div>
+      <ul class="promo-features" style="flex:1;">
+        <li>Share your referral code with a friend</li>
+        <li>They enter it at checkout when booking</li>
+        <li>They get $15 off their first service</li>
+        <li>You get $25 off your next service</li>
+        <li>Refer as many friends as you like</li>
+        <li style="font-size: 14px; white-space: nowrap;">Discounts stack &mdash; up to $50</li>
+      </ul>
+      <p class="promo-note">* Maximum $50 discount per referral period. Each $25 credit is applied after your referred friend completes their first service.</p>
+      <a href="#booking" class="btn" style="width:100%;text-align:center;padding:13px;display:block;margin-top:8px;background:#22c55e;color:#0d0d0d;font-weight:700;border:2px solid transparent;" onmouseover="this.style.background='#0d0d0d';this.style.color='#22c55e';this.style.borderColor='#22c55e';" onmouseout="this.style.background='#22c55e';this.style.color='#0d0d0d';this.style.borderColor='transparent';">Book &amp; Use a Referral Code</a>
+    </div>
     <div class="promo-card c-maintenance">
       <div class="promo-season" style="color:#22d3ee;">&#x1F504; Maintenance Program</div>
       <div class="promo-name">Maintenance Detail</div>
