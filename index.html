@@ -51,7 +51,7 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 36px; left: 0; right: 0; z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(13,13,13,0.96); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 32px; height: 70px;
@@ -82,7 +82,7 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh; padding-top: 106px;
+      min-height: 100vh; padding-top: 70px;
       background: #0d0d0d;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
@@ -483,100 +483,7 @@
 
 
 
-    /* ── PROMO BANNER ── */
-    .promo-banner {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
-      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 30%, #f0d080 50%, var(--gold) 70%, var(--gold-dark) 100%);
-      height: 36px; overflow: hidden; display: flex; align-items: center;
-      box-shadow: 0 2px 10px rgba(201,168,76,0.4);
-    }
-    .promo-track {
-      display: flex; white-space: nowrap; flex-shrink: 0;
-      animation: promoScroll 30s linear infinite;
-    }
-    .promo-track span {
-      font-size: 13px; font-weight: 700; color: #1a1000;
-      letter-spacing: 0.6px; padding: 0 32px;
-    }
-    @keyframes promoScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
 
-
-    /* ── PROMO MODAL ── */
-    .promo-overlay {
-      position: fixed; inset: 0; z-index: 9000;
-      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
-      opacity: 0; pointer-events: none;
-      transition: opacity .35s ease;
-    }
-    .promo-overlay.visible { opacity: 1; pointer-events: all; }
-    .promo-modal {
-      background: var(--card);
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      padding: 48px 40px 40px;
-      max-width: 420px; width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 0 0 1px rgba(201,168,76,0.15), 0 24px 64px rgba(0,0,0,0.7), 0 0 40px rgba(201,168,76,0.12);
-      transform: translateY(20px);
-      transition: transform .35s ease;
-    }
-    .promo-overlay.visible .promo-modal { transform: translateY(0); }
-    .promo-modal-close {
-      position: absolute; top: 14px; right: 16px;
-      background: none; border: none; color: var(--muted);
-      font-size: 22px; cursor: pointer; line-height: 1;
-      transition: color .2s;
-    }
-    .promo-modal-close:hover { color: var(--text); }
-    .promo-modal-tag {
-      display: inline-block; font-size: 11px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold); border: 1px solid rgba(201,168,76,0.35);
-      border-radius: 20px; padding: 4px 14px; margin-bottom: 20px;
-    }
-    .promo-modal h2 {
-      font-size: 32px; font-weight: 800; color: var(--text);
-      line-height: 1.15; margin-bottom: 10px;
-    }
-    .promo-modal h2 span {
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold) 40%, #f0d080 60%, var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .promo-modal p {
-      font-size: 15px; color: var(--muted2); line-height: 1.6; margin-bottom: 28px;
-    }
-    .promo-code-box {
-      display: flex; align-items: center; justify-content: center;
-      background: var(--bg); border: 1.5px dashed var(--gold);
-      border-radius: 10px; padding: 14px 20px; margin-bottom: 28px;
-      cursor: pointer;
-    }
-    .promo-code-box span {
-      font-size: 22px; font-weight: 800; letter-spacing: 4px; color: var(--gold);
-    }
-    .promo-code-box small {
-      font-size: 11px; color: var(--muted); display: block; margin-top: 2px;
-    }
-    .promo-modal .btn-primary {
-      width: 100%; display: flex; align-items: center; justify-content: center;
-    }
-    .promo-modal-dismiss {
-      display: block; margin-top: 14px; font-size: 13px;
-      color: var(--muted); cursor: pointer; background: none; border: none;
-      transition: color .2s;
-    }
-    .promo-modal-dismiss:hover { color: var(--text); }
-    @media (max-width: 480px) {
-      .promo-modal { padding: 40px 24px 32px; }
-      .promo-modal h2 { font-size: 26px; }
-    }
 
   
     /* ── TERMS & CONDITIONS MODAL ── */
@@ -622,16 +529,6 @@
 </style>
 </head>
 <body>
-
-<!-- PROMO BANNER -->
-<div class="promo-banner" id="promoBanner">
-  <div class="promo-track">
-    <span>Book Now &amp; Get <strong>15% OFF</strong> with code <strong>LAUNCH</strong> &nbsp;—&nbsp; Limited Time Only &nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span>Book Now &amp; Get <strong>15% OFF</strong> with code <strong>LAUNCH</strong> &nbsp;—&nbsp; Limited Time Only &nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span>Book Now &amp; Get <strong>15% OFF</strong> with code <strong>LAUNCH</strong> &nbsp;—&nbsp; Limited Time Only &nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span>Book Now &amp; Get <strong>15% OFF</strong> with code <strong>LAUNCH</strong> &nbsp;—&nbsp; Limited Time Only &nbsp;&nbsp;&nbsp;&nbsp;</span>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -1074,55 +971,11 @@
   </div>
 </footer>
 
-<!-- PROMO MODAL -->
-<div class="promo-overlay" id="promoOverlay">
-  <div class="promo-modal" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
-    <button class="promo-modal-close" onclick="closePromoModal()" aria-label="Close">&times;</button>
-    <div class="promo-modal-tag">Limited Time Offer</div>
-    <h2 id="promoTitle">Get <span>15% OFF</span><br>Your First Detail</h2>
-    <p>Book any detailing service and save 15% when you use the code below at checkouts</p>
-    <div class="promo-code-box" onclick="copyPromoCode(this)">
-      <div>
-        <span>LAUNCH</span>
-        <small>Tap to copy code</small>
-      </div>
-    </div>
-    <a href="#booking" class="btn btn-primary" onclick="closePromoModal()">Book Now &amp; Save 15%</a>
-    <button class="promo-modal-dismiss" onclick="closePromoModal()">No thanks, I'll pay full price</button>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 
-// ── PROMO MODAL ──
-(function(){
-  setTimeout(function(){
-    var overlay = document.getElementById('promoOverlay');
-    if(overlay && !sessionStorage.getItem('promoDismissed')){
-      overlay.classList.add('visible');
-    }
-  }, 1200);
-})();
 
-function closePromoModal(){
-  var overlay = document.getElementById('promoOverlay');
-  if(overlay){ overlay.classList.remove('visible'); }
-  sessionStorage.setItem('promoDismissed','1');
-}
-
-function copyPromoCode(el){
-  navigator.clipboard.writeText('LAUNCH').then(function(){
-    var small = el.querySelector('small');
-    if(small){ small.textContent = 'Copied!'; setTimeout(function(){ small.textContent = 'Tap to copy code'; }, 2000); }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  var overlay = document.getElementById('promoOverlay');
-  if(overlay){ overlay.addEventListener('click', function(e){ if(e.target===this) closePromoModal(); }); }
-});
 
 
 // ── LIVE DATE CALENDAR ICON ──
