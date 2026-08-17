@@ -279,6 +279,7 @@
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px; transition: all .3s; position: relative;
       flex: 0 0 320px; scroll-snap-align: center;
+      display: flex; flex-direction: column;
     }
     .review-card::before {
       content: '“'; position: absolute; top: 16px; right: 20px;
@@ -286,7 +287,7 @@
     }
     .review-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: var(--shadow); }
     .review-stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 14px; }
-    .review-text { font-size: 15px; color: var(--muted2); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+    .review-text { font-size: 15px; color: var(--muted2); line-height: 1.75; margin-bottom: 20px; font-style: italic; flex: 1; }
     .review-author { display: flex; align-items: center; gap: 12px; }
     .review-avatar {
       width: 42px; height: 42px; border-radius: 50%;
@@ -797,6 +798,19 @@
       <div class="rs-stat"><div class="rs-stat-num">NL</div><div class="rs-stat-label">Locally Owned</div></div>
     </div>
     <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+        <p class="review-text">"Absolutely blown away by the job he did on my car! The attention to detail was incredible, every corner was spotless, and I honestly don&#x2019;t think my car has ever been this clean. Top-notch service and excellent value for money. Highly recommend AD Auto Spa!"</p>
+        <div class="review-author">
+          <div class="review-avatar">FA</div>
+          <div>
+            <div class="review-name">Fahad A.</div>
+            <div class="review-meta">St. John&#x2019;s, NL</div>
+            <div class="review-badge">Full Detail</div>
+          </div>
+        </div>
+      </div>
 
       <div class="review-card">
         <div class="review-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
